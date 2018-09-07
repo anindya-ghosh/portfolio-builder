@@ -1,0 +1,35 @@
+.share{
+  width: 80px;
+  height: 24px;
+  border: solid 1px #DDDDDD;
+  border-radius: 3px;
+  display: flex;
+}
+.decrease.active, .increase{
+  cursor: pointer;
+  opacity: 1;
+}
+.decrease{
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.decrease, .value, .increase{
+  flex: 1;
+  font-size: 0.7em;
+  color: #287DCE;
+}
+.value{
+  font-size: 1em;
+  min-width: 40px;
+  color: #222222;
+  border-left: solid 1px #DDDDDD;
+  border-right: solid 1px #DDDDDD;
+}
+.decrease:before{
+  font-family: 'FontAwesome';
+  content: "\f068";
+}
+.increase:before{
+  font-family: 'FontAwesome';
+  content: "\f067";
+}

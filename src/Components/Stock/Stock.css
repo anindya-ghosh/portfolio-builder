@@ -1,0 +1,76 @@
+.stock{
+  max-width: 220px;
+  width: 200px;
+  min-height: 72px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-left: 18px;
+  padding-right: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.30);
+  border: 1px solid #FFF;
+  user-select: none;
+  cursor: grab;
+}
+.stock.dragable{
+  cursor: copy;
+}
+.stock:hover{
+  transition: .4s;
+  background: #FFF;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.30);
+  border: 1px solid #FFF;
+}
+.stock .stock-info{
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+}
+.stock-description {
+  flex: 1;
+  color: #89A6EC;
+  font-size: 12px;
+}
+.stock-name {
+  flex: 1;
+  font-size: 16px;
+  color: #666666;
+}
+.stock .stock-price-details{
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.stock .stock-price-details .stock-price .rupee-text{
+  font-size: 22px;
+  color: #666666;
+}
+.stock .stock-price-details .stock-price{
+  font-size: 24px;
+  text-align: right;
+  font-weight: 400;
+  color: #666666;
+}
+.stock .stock-price-details .stock-add-icon:before {
+  z-index: 100;
+  font-family: 'FontAwesome';
+  font-size: 1.8em;
+  color: #00A9D2;
+  content: "\f055";
+}
+.stock .stock-price-details .stock-add-icon{
+  opacity: 0;
+  position: absolute;
+}
+.stock-price-details:hover .stock-add-icon {
+  transition: 0.4s;
+  opacity: 1;
+  cursor: pointer;
+}
+.stock-price-details:hover .stock-price{
+  transition: 0.3s;
+  opacity: 0;
+}

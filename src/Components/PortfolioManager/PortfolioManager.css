@@ -1,0 +1,71 @@
+.portfoliomanager{
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+}
+.portfoliomanager .portfoliomanager-title .box {
+  background-color: #287DCE;
+  max-width: 226px;
+}
+.portfoliomanager .portfoliomanager-title .tail {
+  width: 0px;
+  border-top: solid 24px #15569C;
+  border-left: solid 16px transparent;
+}
+
+.portfolio-playground {
+  flex: 1;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  margin-left: 3.55em;
+  margin-right: 2em;
+}
+.portfolio-playground .portfolio-table, 
+.portfolio-playground .portfolio-insight, 
+.portfolio-playground .portfolio-numbers {
+  flex: 1;
+  height: 20em;
+}
+.portfolio-playground .portfolio-table {
+  min-width: 400px;
+}
+.portfolio-playground .portfolio-table{
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.30);
+}
+.table-header{
+  flex: 1;
+  max-height: 2.5em;
+  padding-right: 1.5em;
+  display: flex;
+  justify-content: space-around;
+  background-color: #8FB9E7;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.30);
+}
+.table-header .header-values{
+  flex: 1;
+  text-align: center;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  font-size: 0.8em;
+  color: #fff;
+}
+
+.portfolio-table-body {
+  flex:1;
+  overflow-y: auto;
+}
+.portfolio-playground .portfolio-insight {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.empty{
+  display: block!important;
+  margin: 7em;
+  margin-left: 8em;
+  font-size: 1em;
+  color: #333;
+  
+}

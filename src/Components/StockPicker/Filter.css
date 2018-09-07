@@ -1,0 +1,54 @@
+.filter{
+  width: 13em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.30);
+  border: 1px solid #FFF;
+  overflow: visible;
+  cursor: pointer;
+}
+.filter:hover{
+  transition: .4s;
+  background: #FFF;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.30);
+  border: 1px solid #FFF;
+}
+.filter .filter-icon{
+  flex: 1;
+}
+.filter .filter-icon:before{
+  padding-bottom: 1em;
+  padding-top: 1em;
+  padding-left: 1em;
+  font-family: 'FontAwesome';
+  color: #00A9D2;
+  top: 0;
+  left: 10px;
+  content: "\f0b0";
+}
+.filter .filter-text{
+  flex: 4;
+  font-size: 14px;
+  color: #00A9D2;
+  /* @todo have to validate */
+  /* white-space: nowrap; */
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
+.filter .filter-count{
+  flex: 1;
+  position: relative;
+  left: -1em;
+  max-width: 25px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 2em;
+  height: 25px;
+  -moz-border-radius: 12.5px;
+	-webkit-border-radius: 12.5px;
+  border-radius: 12.5px;
+  font-size: 12px;
+  color: #ffffff;
+  background: #00A9D2;
+}

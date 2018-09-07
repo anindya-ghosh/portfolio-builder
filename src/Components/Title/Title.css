@@ -1,0 +1,11 @@
+.box {
+  flex: 1;
+  color: #FFFFFF;
+  font-size: 1.2em;
+  padding: 0.6em 1.40em;
+  padding-right: 0;
+  box-shadow: 0.3em 0.3em rgba(0, 0, 0, 0.10);
+}
+.tail{
+  z-index: 100;
+}

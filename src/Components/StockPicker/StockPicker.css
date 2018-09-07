@@ -1,0 +1,47 @@
+.stockpicker {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+}
+
+.stockpicker .stockpicker-title .box {
+  background-color: #00B3D6;
+  max-width: 160px;
+}
+.stockpicker .stockpicker-title .tail {
+  width: 0px;
+  border-top: solid 24px #098DAD;
+  border-left: solid 16px transparent;
+}
+.stockpicker .stock-page {
+  margin-top: -1.2em;
+}
+.stockpicker .stock-page .stock-header {
+  margin-left: 3.5em;
+  margin-right: 2em;
+  display: flex;
+  justify-content: space-between;
+}
+.stockpicker .stock-page .stock-header .stock-description {
+  color: #00A9D2;
+  font-size: 16px;
+  align-self: flex-end;
+}
+.stockpicker .stock-page .stock-body{
+  width: 100%;
+  padding-top: 1em;
+}
+.stockpicker .stock-page .stock-area{
+  margin-left: 3.55em;
+  margin-right: 2em;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: stretch;
+  justify-content: space-between;
+}
+.stockpicker .stock-page .stock-body .stock-nav{
+  display: flex;
+  margin-left: 3.6em;
+  margin-right: 2.1em;
+  justify-content: space-between;
+}

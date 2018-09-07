@@ -1,0 +1,13 @@
+.nav.active{
+  color: #00A9D2;
+  font-size: 0.9em;
+  opacity: 1;
+  cursor: pointer;
+}
+.nav{
+  opacity: 0.5;
+  color: #00A9D2;
+  font-size: 0.9em;
+  cursor: not-allowed;
+  user-select: none;
+}
