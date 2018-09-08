@@ -4,20 +4,6 @@ import './PortfolioManager.css';
 import StockItem from '../StockItem/index';
 import Insight from '../Insight/index';
 
-const months = {
-  '1': 'Jan',
-  '2': 'Feb',
-  '3': 'Mar.',
-  '4': 'Apr.',
-  '5': 'May ',
-  '6': 'June',
-  '7': 'July',
-  '8': 'Aug.',
-  '9': 'Sept.',
-  '10': 'Oct. ',
-  '11': 'Nov.',
-  '12': 'Dec.'
-}
 class PortfolioManager extends Component {
   constructor (props) {
     super(props);
