@@ -2,7 +2,22 @@ import React, { Component } from 'react';
 import Title from '../Title/index';
 import './PortfolioManager.css';
 import StockItem from '../StockItem/index';
+import Insight from '../Insight/index';
 
+const months = {
+  '1': 'Jan',
+  '2': 'Feb',
+  '3': 'Mar.',
+  '4': 'Apr.',
+  '5': 'May ',
+  '6': 'June',
+  '7': 'July',
+  '8': 'Aug.',
+  '9': 'Sept.',
+  '10': 'Oct. ',
+  '11': 'Nov.',
+  '12': 'Dec.'
+}
 class PortfolioManager extends Component {
   constructor (props) {
     super(props);
@@ -12,7 +27,9 @@ class PortfolioManager extends Component {
     this.removeFromPortfolio = this.removeFromPortfolio.bind(this);
     this.newDrop = false;
     this.state = {
-      netWorth: 0
+      netWorth: 0,
+      data: [],
+      yearString: ''
     }
   }
   componentDidUpdate () {
@@ -28,18 +45,46 @@ class PortfolioManager extends Component {
         netWorth: Object.keys(this.shareMap).reduce((sum, v) => {
           return sum + ((+this.shareMap[v]) * (+this.props.price[v]));
         }, 0)
-      })
+      });
+      this.parseDataForInsight();
       this.newDrop = false;
     }
   }
+  /*
+    handling drag and drop 
+  */
+  /**
+   * drop handler method
+   * @param {Object} e react event object
+   */
   dropHandler (e) {
     let name = e.dataTransfer.getData('name');
     this.props.pickedStocks(name);
   }
+  /**
+   * drag over handler method
+   * @param {Object} e react event object
+   */
   dragOverHandler (e) {
+    // invoking e.preventDefault(), otherwise the drop event will never fire for some browsers
+    // also we do not need this event
     e.preventDefault();
   }
-
+  /*
+    managing portfolio
+  */
+  removeFromPortfolio (name) {
+    delete this.shareMap[name];
+    this.calculateNetWorth();
+    this.parseDataForInsight();
+    this.props.removeFromPortfolio(name);
+  }
+  /*
+    managing shares
+  */
+  getAllShares () {
+    return this.shareMap;
+  }
   getShares (name) {
     return this.shareMap[name];
   }
@@ -53,13 +98,18 @@ class PortfolioManager extends Component {
     }
     return false;
   }
-  getShareList () {
-    return Object.keys(this.shareMap);
+  manageShare (name, share) {
+    if (this.setShare(name, share)){
+      this.calculateNetWorth();
+      this.parseDataForInsight();
+    }
   }
-
+  /*
+    numeric calcs 
+   */
   calculateNetWorth () {
     this.setState({
-      netWorth: this.getShareList().reduce((sum, v) => {
+      netWorth: Object.keys(this.getAllShares()).reduce((sum, v) => {
         return sum + ((+this.getShares(v)) * (+this.props.price[v]));
       }, 0)
     });
@@ -67,25 +117,52 @@ class PortfolioManager extends Component {
   calculateWeight (name) {
     return (+this.props.price[name] * +this.getShares(name) / this.state.netWorth * 100).toFixed(0);
   }
-  manageShare (name, share) {
-    this.setShare(name, share) && this.calculateNetWorth();
-  }
-  removeFromPortfolio (name) {
-    delete this.shareMap[name];
-    this.calculateNetWorth();
-    this.props.removeFromPortfolio(name);
+  /*
+    parse data to render chart
+   */
+  parseDataForInsight () {
+    let data = [],
+      yearString,
+      minYear = 9999,
+      maxYear = 0;
+
+    Object.keys(this.getAllShares()).forEach(v => {
+      this.props.historical[v].point.forEach((p, i) => {
+        let datum = data[i] || (data[i] = {}),
+          fullDate = p.date.split('T')[0].split('-'),
+          month = months[+fullDate[1]],
+          date = fullDate[2];
+
+        !datum.label && (datum.label = `${month} ${date}`);
+        !datum.value && (datum.value = 0);
+        datum.value += (p.price * this.getShares(v));
+        if (minYear > +fullDate[0]) {
+          minYear = +fullDate[0];
+        }
+        if (maxYear < +fullDate[0]) {
+          maxYear = +fullDate[0];
+        }
+      })
+    });
+    if (minYear === maxYear) {
+      yearString = `year of ${minYear}`;
+    } else {
+      yearString = `year of ${minYear} - ${maxYear}`;
+    }
+    this.setState({
+      data,
+      yearString
+    });
   }
   renderStockItems () {
     return <React.Fragment>
       {
         this.props.addedInPortfolio.map(name => {
-          let share = this.getShares(name),
-            weight = this.calculateWeight(name);
+          let weight = this.calculateWeight(name);
           return <StockItem 
             name={name}
             key={name}
             price={this.props.price[name]}
-            share={share}
             weight={weight}
             removeFromPortfolio={this.removeFromPortfolio}
             manageShare={this.manageShare}/>
@@ -107,13 +184,17 @@ class PortfolioManager extends Component {
               <div className="header-values">WEIGHT</div>
             </div>
             <div className={isEmpty} style={{display: 'none'}}>
-              pick a stock
+              pick stocks from list
             </div>
             <div className="portfolio-table-body">
               { this.renderStockItems() }
             </div>
           </div>
-          <div className="portfolio-insight"></div>
+          <Insight 
+            className="portfolio-insight"
+            data={this.state.data}
+            yearString={this.state.yearString}
+          />
           <div className="portfolio-summary"></div>
         </div>
       </div>

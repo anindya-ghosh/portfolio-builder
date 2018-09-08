@@ -23,12 +23,18 @@
 }
 .portfolio-playground .portfolio-table, 
 .portfolio-playground .portfolio-insight, 
-.portfolio-playground .portfolio-numbers {
+.portfolio-playground .portfolio-summary {
   flex: 1;
   height: 20em;
 }
 .portfolio-playground .portfolio-table {
   min-width: 400px;
+}
+.portfolio-playground .portfolio-insight {
+  min-width: 350px;
+}
+.portfolio-playground .portfolio-summary {
+  min-width: 200px;
 }
 .portfolio-playground .portfolio-table{
   display: flex;
@@ -67,5 +73,5 @@
   margin-left: 8em;
   font-size: 1em;
   color: #333;
-  
+  opacity: 0.4;
 }
