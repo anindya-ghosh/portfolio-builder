@@ -31,7 +31,7 @@
   min-width: 400px;
 }
 .portfolio-playground .portfolio-insight {
-  min-width: 350px;
+  min-width: 400px;
 }
 .portfolio-playground .portfolio-summary {
   min-width: 200px;
@@ -63,9 +63,8 @@
   flex:1;
   overflow-y: auto;
 }
-.portfolio-playground .portfolio-insight {
+.portfolio-playground .portfolio-insight, .portfolio-playground .portfolio-summary{
   margin-left: 1em;
-  margin-right: 1em;
 }
 .empty{
   display: block!important;
@@ -74,4 +73,36 @@
   font-size: 1em;
   color: #333;
   opacity: 0.4;
+}
+.portfolio-summary .summary{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 2.5em;
+}
+.summary .summary-row {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3.5em;
+}
+.summary-row .stocks-summary, .summary-row .net-summary, .summary-row .pe-summary{
+  flex: 1;
+  white-space: nowrap;
+}
+.summary .summary-label{
+  color: #287DCE;
+  line-height: 20px;
+  font-size: 16px;
+}
+.summary .summary-value{
+  font-size: 2em;
+  color: #101010;
+}
+.build-button{
+  color: #fff;
+  text-align: center;
+  line-height: 53px;
+  height: 53px;
+  background-image: linear-gradient(-90deg, #3489D1 0%, #2BC4DD 100%)
 }

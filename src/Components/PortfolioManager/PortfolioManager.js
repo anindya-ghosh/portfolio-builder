@@ -28,6 +28,7 @@ class PortfolioManager extends Component {
     this.newDrop = false;
     this.state = {
       netWorth: 0,
+      pe: 0,
       data: [],
       yearString: ''
     }
@@ -41,12 +42,12 @@ class PortfolioManager extends Component {
       }
     });
     if (newDropArrived) {
+      let netWorth;
       this.setState({
-        netWorth: Object.keys(this.shareMap).reduce((sum, v) => {
-          return sum + ((+this.shareMap[v]) * (+this.props.price[v]));
-        }, 0)
+        netWorth: (netWorth = this.calculateNetWorth()),
+        ...this.parseDataForInsight(),
+        pe: this.calculatePE(netWorth)
       });
-      this.parseDataForInsight();
       this.newDrop = false;
     }
   }
@@ -74,9 +75,13 @@ class PortfolioManager extends Component {
     managing portfolio
   */
   removeFromPortfolio (name) {
+    let netWorth;
     delete this.shareMap[name];
-    this.calculateNetWorth();
-    this.parseDataForInsight();
+    this.setState({
+      netWorth: (netWorth = this.calculateNetWorth()),
+      ...this.parseDataForInsight(),
+      pe: this.calculatePE(netWorth)
+    });
     this.props.removeFromPortfolio(name);
   }
   /*
@@ -100,22 +105,35 @@ class PortfolioManager extends Component {
   }
   manageShare (name, share) {
     if (this.setShare(name, share)){
-      this.calculateNetWorth();
-      this.parseDataForInsight();
+      let netWorth;
+      this.setState({
+        netWorth: (netWorth = this.calculateNetWorth()),
+        ...this.parseDataForInsight(),
+        pe: this.calculatePE(netWorth)
+      });
     }
   }
-  /*
-    numeric calcs 
+  /**
+   * calculate net worth
    */
   calculateNetWorth () {
-    this.setState({
-      netWorth: Object.keys(this.getAllShares()).reduce((sum, v) => {
-        return sum + ((+this.getShares(v)) * (+this.props.price[v]));
-      }, 0)
-    });
+    return Object.keys(this.getAllShares()).reduce((sum, v) => {
+      return sum + ((+this.getShares(v)) * (+this.props.price[v]));
+    }, 0).toFixed(2);
   }
+  /**
+   * calculate weight for a stock
+   */
   calculateWeight (name) {
     return (+this.props.price[name] * +this.getShares(name) / this.state.netWorth * 100).toFixed(0);
+  }
+  /*
+   * it calculates price to earning ratio 
+   */
+  calculatePE (netWorth) {
+    return (netWorth / Object.keys(this.getAllShares()).reduce((sum, v) => {
+      return sum + ((+this.getShares(v)) * (+this.props.eps[v]));
+    }, 0)).toFixed(2);
   }
   /*
     parse data to render chart
@@ -129,11 +147,11 @@ class PortfolioManager extends Component {
     Object.keys(this.getAllShares()).forEach(v => {
       this.props.historical[v].point.forEach((p, i) => {
         let datum = data[i] || (data[i] = {}),
-          fullDate = p.date.split('T')[0].split('-'),
-          month = months[+fullDate[1]],
-          date = fullDate[2];
+          fullDate = p.date.split('T')[0].split('-');
+          // month = months[+fullDate[1]],
+          // date = fullDate[2];
 
-        !datum.label && (datum.label = `${month} ${date}`);
+        datum.label = `${i}`; //`${month} ${date}`
         !datum.value && (datum.value = 0);
         datum.value += (p.price * this.getShares(v));
         if (minYear > +fullDate[0]) {
@@ -149,11 +167,14 @@ class PortfolioManager extends Component {
     } else {
       yearString = `year of ${minYear} - ${maxYear}`;
     }
-    this.setState({
+    return {
       data,
       yearString
-    });
+    };
   }
+  /**
+   * render function for stock items
+   */
   renderStockItems () {
     return <React.Fragment>
       {
@@ -170,6 +191,9 @@ class PortfolioManager extends Component {
       }
     </React.Fragment>
   }
+  /**
+   * render function for the component
+   */
   render () {
     let isEmpty = this.props.addedInPortfolio.length ? '' : 'empty';
     return (
@@ -195,7 +219,27 @@ class PortfolioManager extends Component {
             data={this.state.data}
             yearString={this.state.yearString}
           />
-          <div className="portfolio-summary"></div>
+          <div className="portfolio-summary">
+            <div className="summary">
+              <div className="summary-row">
+                <div className="stocks-summary">
+                  <div className="summary-label">Stocks</div>
+                  <div className="summary-value">{this.props.addedInPortfolio.length}</div>
+                </div>
+                <div className="net-summary">
+                  <div className="summary-label">Net Worth</div> 
+                  <div className="summary-value">₹{this.state.netWorth}</div>
+                </div>
+              </div>
+              <div className="summary-row">
+                <div className="pe-summary">
+                  <div className="summary-label">P/E Ratio</div>
+                  <div className="summary-value">{this.state.pe}</div>
+                </div>
+              </div>
+            </div>
+            <div className="build-button">BUILD PORTFOLIO</div>
+          </div>
         </div>
       </div>
     );
