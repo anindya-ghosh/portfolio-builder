@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import FusionCharts from 'fusioncharts/core';
-import Area2D from 'fusioncharts/viz/area2d';
-import Gammel from 'fusioncharts/themes/es/fusioncharts.theme.candy';
+import FusionCharts from 'fusioncharts';
+import Charts from 'fusioncharts/fusioncharts.charts';
+import Ocean from 'fusioncharts/themes/fusioncharts.theme.ocean';
 import './Insight.css';
 
-FusionCharts.addDep(Area2D);
-FusionCharts.addDep(Gammel);
+Charts(FusionCharts);
+Ocean(FusionCharts);
 
 class Insight extends Component {
   constructor (props) {
     super(props);
     this.json = {
       chart: {
-        theme: 'candy',
+        theme: 'ocean',
         xaxisname: this.props.yearString,
         yaxisname: 'price',
         'showXAxisLine': 1,
@@ -68,12 +68,15 @@ class Insight extends Component {
       }).render();
     });
   }
-
+  
   componentDidUpdate () {
     this.json.chart.xaxisname = this.props.yearString;
     this.json.data = this.props.data;
     this.chart.setChartData(this.json);
   }
+  /**
+   * render function for the component
+   */
   render () {
     return (
       <div className={`insight ${this.props.className}`}>
