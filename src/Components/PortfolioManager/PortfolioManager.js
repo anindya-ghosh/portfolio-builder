@@ -131,9 +131,9 @@ class PortfolioManager extends Component {
    * it calculates price to earning ratio 
    */
   calculatePE (netWorth) {
-    return (netWorth / Object.keys(this.getAllShares()).reduce((sum, v) => {
+    return (+netWorth / (Object.keys(this.getAllShares()).reduce((sum, v) => {
       return sum + ((+this.getShares(v)) * (+this.props.eps[v]));
-    }, 0)).toFixed(2);
+    }, 0) || 1)).toFixed(2);
   }
   /*
     parse data to render chart
