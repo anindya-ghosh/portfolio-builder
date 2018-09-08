@@ -1,0 +1,12 @@
+.insight {
+  padding: 1em;
+  padding-top: 0em;
+}
+.insight .caption{
+  font-size: 1.3em;
+  color: #1D70CA;
+  margin-bottom: 1em;
+}
+.insight .chart {
+  height: 17.3em;
+}
