@@ -27,6 +27,7 @@
   margin-left: 1em;
   padding-top: 3.8em;
   padding-left: 2.55em;
+  padding-bottom: 0.3em;
 }
 .portfolio-playground .portfolio-table, 
 .portfolio-playground .portfolio-insight, 
@@ -87,6 +88,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding-top: 2.5em;
+  margin-bottom: 0.95em;
 }
 .summary .summary-row {
   flex: 1;
