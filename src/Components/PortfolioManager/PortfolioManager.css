@@ -3,6 +3,9 @@
   flex-direction: column;
   margin-top: 2em;
 }
+.portfoliomanager .portfoliomanager-title{
+  z-index: 10;
+}
 .portfoliomanager .portfoliomanager-title .box {
   background-color: #287DCE;
   max-width: 226px;
@@ -18,8 +21,12 @@
   display: flex;
   flex-flow: row;
   justify-content: space-between;
-  margin-left: 3.55em;
-  margin-right: 2em;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.10);
+  margin-top: -3.95em;
+  margin-left: 1em;
+  padding-top: 3.8em;
+  padding-left: 2.55em;
 }
 .portfolio-playground .portfolio-table, 
 .portfolio-playground .portfolio-insight, 
@@ -35,6 +42,7 @@
 }
 .portfolio-playground .portfolio-summary {
   min-width: 200px;
+  margin-right: 2em;
 }
 .portfolio-playground .portfolio-table{
   display: flex;
@@ -86,6 +94,12 @@
   justify-content: space-between;
   margin-bottom: 3.5em;
 }
+.summary-row .stocks-summary{
+  margin-right: 2em;
+}
+.summary-row .net-summary{
+  margin-right: -1em;
+}
 .summary-row .stocks-summary, .summary-row .net-summary, .summary-row .pe-summary{
   flex: 1;
   white-space: nowrap;
@@ -96,10 +110,11 @@
   font-size: 16px;
 }
 .summary .summary-value{
-  font-size: 2em;
+  font-size: 1.6em;
   color: #101010;
 }
 .build-button{
+  cursor: pointer;
   color: #fff;
   text-align: center;
   line-height: 53px;
@@ -109,7 +124,6 @@
 }
 .build-button:hover{
   transition: .4s;
-  background: #FFF;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.30);
   background-image: linear-gradient(-90deg, #3489D1 0%, #2BC4DD 100%);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.30);
 }

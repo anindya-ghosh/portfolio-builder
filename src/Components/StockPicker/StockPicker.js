@@ -22,6 +22,9 @@ class StockPicker extends Component {
   componentDidUpdate () {
     this.adjustPageNumber();
   }
+  /**
+   * adjust page number when there is no card in the page
+   */
   adjustPageNumber () {
     if (this.state.pageNumber > this.getTotalPageNumber() && (this.state.pageNumber - 1) > -1) {
       this.setState(prevState => {
@@ -104,24 +107,24 @@ class StockPicker extends Component {
     return (
       <div className="stockpicker">
         <Title className="stockpicker-title" title="PICK STOCKS"/>
-        <div className="stock-page">
-          <div className="stock-header">
-            <div className="stock-description">
-              Showing {min} - {max} of {total} matching stocks
+          <div className="stock-page">
+            <div className="stock-header">
+              <div className="stock-description">
+                Showing {min} - {max} of {total} matching stocks
+              </div>
+              <Filter value={3}/>
             </div>
-            <Filter value={3}/>
-          </div>
-          <div className="stock-body">
-            <div className="stock-area">
-              {this.renderStocks()}
-            </div>
-            <div className="stock-nav">
-              <NavigationButton value="PREV" className={isPrevActive} navigate={this.goToPrevPage}/>
-              <NavigationButton value="NEXT" className={isNextActive} navigate={this.goToNextPage}/>
+            <div className="stock-body">
+              <div className="stock-area">
+                {this.renderStocks()}
+              </div>
+              <div className="stock-nav">
+                <NavigationButton value="PREV" className={isPrevActive} navigate={this.goToPrevPage}/>
+                <NavigationButton value="NEXT" className={isNextActive} navigate={this.goToNextPage}/>
+              </div>
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }

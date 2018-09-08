@@ -9,13 +9,18 @@ class Shares extends Component {
       share: 1
     };
   }
+  /**
+   * handles minus button click
+   */
   decrease () {
     this.setState(prev => {
       return { share: prev.share > 1 ? prev.share - 1 : prev.share };
     });
     this.props.manageShare(-1);
   }
-
+  /**
+   * handles plus button click
+   */
   increase () {
     this.setState(prev => {
       return { share: prev.share + 1 };

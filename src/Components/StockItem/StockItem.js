@@ -8,10 +8,16 @@ class StockItem extends Component {
     this.removeFromPortfolio = this.removeFromPortfolio.bind(this);
     this.manageShare = this.manageShare.bind(this);
   }
-
+  /**
+   * remove stock from portfolio
+   */
   removeFromPortfolio () {
     this.props.removeFromPortfolio(this.props.name);
   }
+  /**
+   * manage share count per stock
+   * @param {number} value number of increased / decreased
+   */
   manageShare (value) {
     this.props.manageShare(this.props.name, value);
   }

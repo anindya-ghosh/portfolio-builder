@@ -10,9 +10,16 @@ class Stock extends Component {
       stocks: this.props.stocks
     };
   }
+  /**
+   * handles drag start event
+   * @param {Object} e react event object
+   */
   dragStartHandler (e) {
     e.dataTransfer.setData('name', this.props.name);
   }
+  /**
+   * handles the click event on add button
+   */
   pickStock () {
     this.props.pickStock(this.props.name);
   }

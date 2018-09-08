@@ -105,7 +105,7 @@ class PortfolioManager extends Component {
   calculateNetWorth () {
     return Object.keys(this.getAllShares()).reduce((sum, v) => {
       return sum + ((+this.getShares(v)) * (+this.props.price[v]));
-    }, 0).toFixed(2);
+    }, 0).toFixed(0);
   }
   /**
    * calculate weight for a stock
@@ -113,16 +113,16 @@ class PortfolioManager extends Component {
   calculateWeight (name) {
     return (+this.props.price[name] * +this.getShares(name) / this.state.netWorth * 100).toFixed(0);
   }
-  /*
+  /**
    * it calculates price to earning ratio 
    */
   calculatePE (netWorth) {
     return (+netWorth / (Object.keys(this.getAllShares()).reduce((sum, v) => {
       return sum + ((+this.getShares(v)) * (+this.props.eps[v]));
-    }, 0) || 1)).toFixed(2);
+    }, 0) || 1)).toFixed(1);
   }
-  /*
-    parse data to render chart
+  /**
+   * parse data to render chart
    */
   parseDataForInsight () {
     let data = [],
