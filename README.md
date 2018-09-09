@@ -3,7 +3,7 @@
 
 Hosted at https://smallcase-portfoliobuilder.netlify.com
 
-![Portfolio Builder Screenshot](./snapshot.png)
+![Portfolio Builder Screenshot](./snap.png)
 
 ## Dev setup
 
