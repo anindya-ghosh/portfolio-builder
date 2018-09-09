@@ -3,7 +3,6 @@ import Title from '../Title/index';
 import './PortfolioManager.css';
 import StockItem from '../StockItem/index';
 import Insight from '../Insight/index';
-import { sortFn } from '../../lib';
 
 class PortfolioManager extends Component {
   constructor (props) {
@@ -163,10 +162,9 @@ class PortfolioManager extends Component {
    * render function for stock items
    */
   renderStockItems () {
-    console.log(this.props.addedInPortfolio.sort(sortFn));
     return <React.Fragment>
       {
-        this.props.addedInPortfolio.sort(sortFn).map(name => {
+        this.props.addedInPortfolio.map(name => {
           let weight = this.calculateWeight(name);
           return <StockItem 
             name={name}

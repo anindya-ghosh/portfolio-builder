@@ -89,7 +89,6 @@ class StockPicker extends Component {
    * render all the available stocks with info
    */
   renderStocks () {
-    console.log(this.getCurrStockList().sort(sortFn));
     return <React.Fragment>
       {
         this.getCurrStockList().map(v => {
