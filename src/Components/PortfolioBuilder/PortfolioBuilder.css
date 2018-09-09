@@ -4,7 +4,10 @@
   background-image: linear-gradient(-90deg, #3489D1 0%, #2BC4DD 100%)
 }
 .portfoliobuilder .body{
+  max-width: 1232px;
   margin: 25px;
+  margin-left: calc((100% - 1232px) / 2);
+  margin-right: calc((100% - 1232px) / 2);
 }
 .banner {
   font-size: 2em;
