@@ -1,3 +1,3 @@
 import { deepCopy } from './deepCopy';
-
-export { deepCopy };
+import { sortFn} from './sortFn';
+export { deepCopy, sortFn };

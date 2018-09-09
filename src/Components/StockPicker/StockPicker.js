@@ -3,6 +3,7 @@ import Title from '../Title/index';
 import Filter from './Filter';
 import Stock from '../Stock/index';
 import NavigationButton from '../NavigationButton/index';
+import { sortFn } from '../../lib/index';
 import './StockPicker.css';
 
 const pageSize = 8;
@@ -82,14 +83,15 @@ class StockPicker extends Component {
    * get list of stocks in current page
    */
   getCurrStockList () {
-    return this.props.stocks.slice(...this.getVisualRange());
+    return this.props.stocks.sort(sortFn).slice(...this.getVisualRange());
   }
   /**
    * render all the available stocks with info
    */
   renderStocks () {
+    console.log(this.getCurrStockList().sort(sortFn));
     return <React.Fragment>
-      { 
+      {
         this.getCurrStockList().map(v => {
           return <Stock name={v} key={v} price={this.props.price[v]} pickStock={this.props.pickStock}/>
         })
