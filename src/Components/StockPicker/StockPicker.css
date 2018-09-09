@@ -44,7 +44,18 @@
   display: flex;
   flex-flow: row wrap;
   align-content: stretch;
-  justify-content: space-between;
+  justify-content: flex-start;
+}
+.stock-area>.stock{
+  width: calc(100% * (1/4) - 10px - 1px);
+  margin-left: calc((10px - 1px) * 4 * .5);
+  margin-right: calc((10px - 1px) * 4 * .5);
+}
+.stock-area :nth-child(1), .stock-area :nth-child(5) {
+  margin-left: 0;
+}
+.stock-area :nth-child(4), .stock-area :nth-child(8) {
+  margin-right: 0;
 }
 .stockpicker .stock-page .stock-body .stock-nav{
   display: flex;
