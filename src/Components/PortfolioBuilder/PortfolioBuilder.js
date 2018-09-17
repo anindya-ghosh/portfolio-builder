@@ -39,7 +39,7 @@ class PortfolioBuilder extends Component {
         <div className="header"></div>
         <div className="body">
           <div className="banner">
-            smallcase Portfolio Builder
+            Investment Portfolio Builder
           </div>
           <StockPicker stocks={this.state.availableStock} price={this.stockPrice} pickStock={this.addToPortfolio}/>
           <PortfolioManager

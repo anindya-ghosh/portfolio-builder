@@ -1,7 +1,7 @@
-# smallcase Portfolio Builder
+# Portfolio Builder
 ### Investment portfolio creating tool
 
-Hosted at https://smallcase-portfoliobuilder.netlify.com
+Hosted at https://portfoliobuilder.netlify.com
 
 ![Portfolio Builder Screenshot](./snap.png)
 
